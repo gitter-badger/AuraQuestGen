@@ -5,4 +5,5 @@ package Quests.Rewards;
  */
 public interface Reward {
     String toString();
+    String getType();
 }

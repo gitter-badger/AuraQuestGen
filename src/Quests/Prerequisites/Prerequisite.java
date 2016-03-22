@@ -5,4 +5,5 @@ package Quests.Prerequisites;
  */
 public interface Prerequisite {
     String toString();
+    String getType();
 }

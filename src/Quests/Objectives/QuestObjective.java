@@ -5,4 +5,5 @@ package Quests.Objectives;
  */
 public interface QuestObjective {
     String toString();
+    String getType();
 }

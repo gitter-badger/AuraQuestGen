@@ -1,8 +1,9 @@
+import Quests.Objectives.Kill;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.Scanner;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * Created by Bruno on 22/03/2016.
