@@ -1,50 +1,36 @@
+package Core;
+
+import Interface.GUI;
 import Quests.Objective;
 import Quests.Objectives.Kill;
 import Quests.Prerequisites.Prerequisite;
 import Quests.Quest;
 import Quests.Rewards.*;
+import Quests.Script;
+import Utilities.UtilSOfTC;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.Scanner;
 
 /**
  * Created by Bruno on 22/03/2016.
  */
 public class AuraQuestGen {
+    public static Script script;
     public static void main(String[] args){
-        test();
+        GUI.createGUI();
     }
 
     private static void fileCreate(Script script){
         script.outputFile();
     }
 
-    private static String getCurrentPath(){
-        //Magic a.k.a setup basic file path
-        String decodedPath="",filePath = AuraQuestGen.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        try{
-            decodedPath = URLDecoder.decode(filePath, "UTF-8");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return decodedPath+"Quest Scripts"+File.separator;
-    }
-
-    private static String scriptName(int id, String name){
-        return id+"_"+name+".cs";
-    }
-
     //Nothing to see here xD just a simple test for the writing system
     private static void test(){
         //Seeking info about the file
         int questID = 101;
-        String questName = "testFile", path=getCurrentPath(), name=scriptName(questID,questName);
+        String questName = "testFile", path= UtilSOfTC.getCurrentPath();
         Quest testQuest = new Quest(
                 questID,
                 questName,
-                "TestFile",
                 "This is just a dummy quest used as a test for a Quest Generator",
                 new Objective[]{
                         new Objective(
@@ -66,7 +52,7 @@ public class AuraQuestGen {
                         new Enchant(10101)
                 }
         );
-        Script testScript = new Script(testQuest,path,name);
+        Script testScript = new Script(testQuest, questName, questID);
         testScript.outputFile();
     }
 }
