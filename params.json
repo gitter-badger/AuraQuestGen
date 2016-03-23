@@ -1,0 +1,6 @@
+{
+  "name": "Auraquestgen",
+  "tagline": "Small java app to generate #.cs files containing Quest scripts for Aura",
+  "body": "### Aura Quest Generator.\r\nHeavily under construction.\r\nSimple java app to generate Quest scripts based on simple templates. Built for Project Aura.\r\nYou can check the original forum thread [here](http://aura-project.org/forum/topic/215-quest-generator/).\r\n\r\n### Authors and Contributors\r\n@YaibaToKen",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
