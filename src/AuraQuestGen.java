@@ -1,4 +1,8 @@
+import Quests.Objective;
 import Quests.Objectives.Kill;
+import Quests.Prerequisites.Prerequisite;
+import Quests.Quest;
+import Quests.Rewards.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,40 +18,54 @@ public class AuraQuestGen {
     }
 
     private static void fileCreate(){
-        //Vars
-        Scanner infSeeker = new Scanner(System.in);
-        int questID;
-        String  questName, filePath = AuraQuestGen.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String decodedPath="";
+        test();
+    }
 
+    private static String getCurrentPath(){
         //Magic a.k.a setup basic file path
+        String decodedPath="",filePath = AuraQuestGen.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         try{
             decodedPath = URLDecoder.decode(filePath, "UTF-8");
-            decodedPath.substring(0, decodedPath.lastIndexOf(File.separator) + 1);
         }catch (IOException e){
             e.printStackTrace();
-            //System.exit(-1);
         }
+        return decodedPath+"Quest Scripts"+File.separator;
+    }
 
+    private static String scriptName(int id, String name){
+        return id+"_"+name+".cs";
+    }
+
+    private static void test(){
         //Seeking info about the file
-        System.out.println("Quest ID: ");
-        questID = infSeeker.nextInt();
-        infSeeker.nextLine();
-        System.out.println("Quest name: ");
-        questName = infSeeker.nextLine();
-
-        //Setting final file path
-        decodedPath+=questID+"_"+questName+".cs";
-
-        //Create file
-        File questFile = new File(decodedPath);
-        questFile.getParentFile().mkdirs();
-        try {
-            questFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-            //System.exit(-1);
-        }
-        System.out.println("File created in: "+decodedPath);
+        int questID = 101;
+        String questName = "testFile", path=getCurrentPath(), name=scriptName(questID,questName);
+        Quest testQuest = new Quest(
+                questID,
+                questName,
+                "TestFile",
+                "This is just a dummy quest used as a test for a Quest Generator",
+                new Objective[]{
+                        new Objective(
+                                "kill_testRace",
+                                "Kill 5 testRace monsters",
+                                0,
+                                0,
+                                0,
+                                new Kill(5,"testRace")
+                        )
+                },
+                new Prerequisite[]{},
+                new Reward[]{
+                        new Gold(777),
+                        new Exp(666),
+                        new AP(69),
+                        new Item(10101,1),
+                        new ExplExp(666),
+                        new Enchant(10101)
+                }
+        );
+        Script testScript = new Script(testQuest,path,name);
+        testScript.outputFile();
     }
 }

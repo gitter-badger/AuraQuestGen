@@ -3,6 +3,8 @@ package Quests;
 import Quests.Prerequisites.Prerequisite;
 import Quests.Rewards.Reward;
 
+import java.util.ArrayList;
+
 /**
  * Created by Bruno on 22/03/2016.
  */
@@ -13,12 +15,14 @@ public class Quest {
     protected Objective[] objectives;
     protected Prerequisite[] prerequisites;
 
-    public Quest(String className, int id, String name, String description, Objective[] objectives) {
-        this.name = name;
-        this.description = description;
-        this.className = className;
+    public Quest(int id, String name, String className, String description, Objective[] objectives, Prerequisite[] prerequisites, Reward[] rewards) {
         this.id = id;
+        this.rewards = rewards;
+        this.name = name;
+        this.className = className;
+        this.description = description;
         this.objectives = objectives;
+        this.prerequisites = prerequisites;
     }
 
     protected String openQuest(){
@@ -34,25 +38,31 @@ public class Quest {
     }
 
     protected String addObjectives(){
-        String objectiveList = "";
-        for (Objective objective :objectives){
-            objectiveList+=objective.toString();
+        String objectiveList = "\n\n\t\t//Objectives";
+        if(objectives!=null){
+            for (Objective objective :objectives){
+                objectiveList+=objective.toString();
+            }
         }
         return objectiveList;
     }
 
     protected String addPrerequisites(){
-        String prerequisiteList = "";
-        for (Prerequisite prerequisite :prerequisites){
-            prerequisiteList+=prerequisite.toString();
+        String prerequisiteList = "\n\n\t\t//Prerequisites";
+        if(prerequisites!=null){
+            for (Prerequisite prerequisite :prerequisites){
+                prerequisiteList+=prerequisite.toString();
+            }
         }
         return prerequisiteList;
     }
 
     protected String addRewards(){
-        String rewardList = "";
-        for (Reward reward :rewards){
-            rewardList+=reward.toString();
+        String rewardList = "\n\n\t\t//Rewards";
+        if(rewards!=null){
+            for (Reward reward :rewards){
+                rewardList+=reward.toString();
+            }
         }
         return rewardList;
     }
