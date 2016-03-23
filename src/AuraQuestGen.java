@@ -14,11 +14,11 @@ import java.util.Scanner;
  */
 public class AuraQuestGen {
     public static void main(String[] args){
-        fileCreate();
+        test();
     }
 
-    private static void fileCreate(){
-        test();
+    private static void fileCreate(Script script){
+        script.outputFile();
     }
 
     private static String getCurrentPath(){
@@ -36,6 +36,7 @@ public class AuraQuestGen {
         return id+"_"+name+".cs";
     }
 
+    //Nothing to see here xD just a simple test for the writing system
     private static void test(){
         //Seeking info about the file
         int questID = 101;
